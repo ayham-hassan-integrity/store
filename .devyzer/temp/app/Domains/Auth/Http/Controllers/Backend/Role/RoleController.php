@@ -13,7 +13,6 @@ use App\Domains\Auth\Services\RoleService;
 /**
  * Class RoleController.
  */
- /** @OA\Info(title="store API", version="0.1") */
 class RoleController
 {
     /**
