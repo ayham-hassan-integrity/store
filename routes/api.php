@@ -16,3 +16,19 @@ use Illuminate\Http\Request;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+
+use App\Domains\Product\Http\Controllers\Api\Product\ProductController;
+
+Route::group([
+    'prefix' => 'product',
+    'as' => 'product.',
+], function () {
+
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::post('/', [ProductController::class, 'store'])->name('store');
+    Route::group(['prefix' => '{project}'], function () {
+        Route::get('/', [ProductController::class, 'show'])->name('show');
+        Route::put('/', [ProductController::class, 'update'])->name('update');
+        Route::delete('/', [ProductController::class, 'delete'])->name('destroy');
+    });
+});
